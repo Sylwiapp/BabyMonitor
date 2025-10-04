@@ -1,0 +1,13 @@
+# Python / venv
+.venv/
+__pycache__/
+*.pyc
+
+# System/IDE
+.DS_Store
+Thumbs.db
+.vscode/
+
+# Sekrety i lokalne pliki
+.env
+*.env

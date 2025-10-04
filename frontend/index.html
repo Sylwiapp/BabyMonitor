@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BabyMonitor</title>
+  <link rel="manifest" href="./manifest.webmanifest" />
+  <link rel="stylesheet" href="./styles.css" />
+  <meta name="theme-color" content="#0ea5e9" />
+  <script type="module">
+    import * as Plot from "https://cdn.jsdelivr.net/npm/@observablehq/plot@0.6/+esm";
+    window.Plot = Plot;
+  </script>
+</head>
+<body>
+  <header>
+    <h1>🐻 BabyMonitor</h1>
+    <div class="device">
+      <label>Device ID</label>
+      <input id="deviceId" value="demo-1" />
+      <button id="connectBtn">Połącz</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="cards">
+      <div class="card"><span>Oddechy/min</span><strong id="rr">–</strong></div>
+      <div class="card"><span>Tętno</span><strong id="hr">–</strong></div>
+      <div class="card"><span>Temp. skóry (°C)</span><strong id="skin">–</strong></div>
+      <div class="card"><span>H₂S</span><strong id="h2s">–</strong></div>
+      <div class="card"><span>Hałas (dB)</span><strong id="noise">–</strong></div>
+      <div class="card presence"><span>Obecność</span><strong id="presence">–</strong></div>
+    </section>
+
+    <section>
+      <h2>Wykresy (ostatnie 12 h)</h2>
+      <div id="chart-rr"></div>
+      <div id="chart-hr"></div>
+      <div id="chart-temp"></div>
+      <div id="chart-h2s"></div>
+    </section>
+
+    <section>
+      <h2>Zdarzenia</h2>
+      <ul id="events"></ul>
+    </section>
+  </main>
+
+  <footer>
+    <small>BabyMonitor • PWA • WebSocket • Observable Plot</small>
+  </footer>
+
+  <script src="./app.js" type="module"></script>
+  <script>
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("/sw.js");
+    }
+  </script>
+</body>
+</html>
